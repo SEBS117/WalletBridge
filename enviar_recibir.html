@@ -8,6 +8,10 @@
 </head>
 <body>
     <div class="header">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Logo" class="logo">
+            <h1 class="title">WalletBridge</h1>
+        </div>
         <nav class="toolbar">
             <button class="toolbar-button" onclick="location.href='inicio.html'">Inicio</button>
             <button class="toolbar-button active">Enviar y Recibir</button>
@@ -16,13 +20,13 @@
         </nav>
     </div>
 
-    <div class="welcome-section">
+    <div class="welcome-section" style="text-align: center;">
         <div class="welcome-text">
             <h1>Enviar y Recibir</h1>
             <p>Gestiona tus transferencias de manera rápida y segura.</p>
         </div>
         <div class="welcome-image">
-            <img src="welcome-image.png" alt="Enviar y Recibir" class="image">
+            <img src="trans.jpg" alt="Enviar y Recibir" class="image">
         </div>
     </div>
 
@@ -32,9 +36,17 @@
                 <h2>Enviar</h2>
                 <label for="destination-pointer">Payment Pointer de Destino</label>
                 <input type="text" id="destination-pointer" class="textfield" placeholder="Ejemplo: $wallet.example.com">
+                <span id="destination-pointer-error" class="error-message"></span>
+
                 <label for="send-amount">Monto</label>
                 <input type="text" id="send-amount" class="textfield" placeholder="Ejemplo: 100">
-                <button class="action-button" onclick="sendPayment()">Realizar Pago</button>
+                <span id="send-amount-error" class="error-message"></span>
+
+                <label for="source-pointer">Wallet de Origen</label>
+                <input type="text" id="source-pointer" class="textfield" placeholder="Ejemplo: $wallet.origen.com">
+                <span id="source-pointer-error" class="error-message"></span>
+
+                <button class="action-button" onclick="if (validateFields([{id: 'destination-pointer'}, {id: 'send-amount'}, {id: 'source-pointer'}])) sendPayment();">Realizar Pago</button>
                 <div id="send-message-area" class="message-area"></div>
             </div>
             <div class="action-card">
@@ -86,29 +98,71 @@
             qrContainer.innerHTML = `<p>QR Code generado para recibir ${amount} a ${paymentPointer}</p>`;
         }
 
-        function sendPayment() {
+        async function sendPayment() {
+            const sourcePointer = document.getElementById('source-pointer').value;
             const destinationPointer = document.getElementById('destination-pointer').value;
             const sendAmount = document.getElementById('send-amount').value;
             const sendMessageArea = document.getElementById('send-message-area');
 
-            // Aquí iría la lógica para realizar el pago
-            // Por ahora, solo mostramos un mensaje de éxito
-            sendMessageArea.innerText = `Pago de ${sendAmount} enviado a ${destinationPointer}`;
+            try {
+                const response = await fetch('http://localhost:3000/api/outgoing-payments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ sourcePointer, paymentPointer: destinationPointer, amount: sendAmount }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    sendMessageArea.innerText = `Pago de ${sendAmount} enviado desde ${sourcePointer} a ${destinationPointer}`;
+                } else {
+                    sendMessageArea.innerText = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                sendMessageArea.innerText = `Error al enviar el pago: ${error.message}`;
+            }
+
             setTimeout(() => {
                 sendMessageArea.innerText = '';
             }, 3000);
         }
 
-        function consultPayment() {
+        async function consultPayment() {
             const paymentId = document.getElementById('payment-id').value;
             const paymentDetails = document.getElementById('payment-details');
 
-            // Aquí iría la lógica para consultar el pago
-            // Por ahora, solo mostramos un mensaje de ejemplo
-            paymentDetails.innerText = `Detalles del pago con ID ${paymentId}: Monto - 100, Estado - Completado`;
+            try {
+                const response = await fetch(`http://localhost:3000/api/outgoing-payments/${paymentId}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    paymentDetails.innerText = `Detalles del pago con ID ${paymentId}: Monto - ${data.amount}, Estado - ${data.status}`;
+                } else {
+                    paymentDetails.innerText = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                paymentDetails.innerText = `Error al consultar el pago: ${error.message}`;
+            }
+
             setTimeout(() => {
                 paymentDetails.innerText = '';
             }, 5000);
+        }
+
+        function validateFields(fields) {
+            let isValid = true;
+            fields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const errorMessage = document.getElementById(`${field.id}-error`);
+                if (!input.value) {
+                    isValid = false;
+                    errorMessage.innerText = 'Este campo es obligatorio';
+                } else {
+                    errorMessage.innerText = '';
+                }
+            });
+            return isValid;
         }
     </script>
 </body>
