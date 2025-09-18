@@ -1,0 +1,288 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f8fb;
+    color: #333;
+}
+
+/* Header styles */
+.header {
+    background-color: #003366;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.logo {
+    max-width: 50px;
+}
+
+.title {
+    font-size: 24px;
+    color: #003366;
+}
+
+/* Login container styles */
+.login-container {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.login-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.textfield {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: calc(100% - 22px);
+}
+
+/* Styles for the QR generation in Recibir section */
+.textfield {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.qr-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    min-height: 200px;
+}
+
+/* Login button styles */
+.login-button {
+    background-color: #003366;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.login-button:hover {
+    background-color: #00509e;
+}
+
+/* Styles for the main container and side image */
+.main-container {
+    display: flex;
+    height: 100vh;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0f7fa;
+}
+
+.side-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.side-image:hover {
+    transform: scale(1.1);
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+/* Added styles for the login image and animation */
+.login-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.login-image {
+    max-width: 150px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-image:hover {
+    transform: scale(2.5);
+}
+
+/* Styles for the toolbar */
+.toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background-color: #003366;
+    padding: 10px;
+}
+
+.toolbar-button {
+    background-color: #00509e;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.toolbar-button:hover {
+    background-color: #0073e6;
+}
+
+/* Highlight the active page button */
+.toolbar-button.active {
+    background-color: #ffffff;
+    color: #003366;
+    font-weight: bold;
+    cursor: default;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Added styles for rounded image */
+.rounded-image {
+    border-radius: 15px;
+    max-width: 100%;
+    height: auto;
+    align-content: center;
+}
+
+/* Styles for action cards and message area */
+.action-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.action-card {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.action-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #00509e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-button:hover {
+    background-color: #0073e6;
+}
+
+.message-area {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    min-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.info-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f4f8fb;
+}
+
+/* Styles for QR section */
+.qr-section {
+    text-align: center;
+    margin: 20px;
+}
+
+.qr-button {
+    padding: 10px 20px;
+    background-color: #00509e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.qr-button:hover {
+    background-color: #0073e6;
+}
+
+#qr-container {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Styles for the consult payment section */
+.message-area {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center;
+}

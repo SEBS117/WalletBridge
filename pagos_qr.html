@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagos QR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <nav class="toolbar">
+            <button class="toolbar-button" onclick="location.href='inicio.html'">Inicio</button>
+            <button class="toolbar-button" onclick="location.href='enviar_recibir.html'">Enviar y Recibir</button>
+            <button class="toolbar-button active">Pagos QR</button>
+            <button class="toolbar-button" onclick="location.href='historial.html'">Historial</button>
+        </nav>
+    </div>
+
+    <div class="welcome-section">
+        <div class="welcome-text">
+            <h1>Pagos QR</h1>
+            <p>Realiza pagos rápidos y seguros con códigos QR.</p>
+        </div>
+        <div class="welcome-image">
+            <img src="welcome-image.png" alt="Pagos QR" class="image">
+        </div>
+    </div>
+
+    <div class="qr-section">
+        <h1>Generar Código QR</h1>
+        <button id="generate-qr" class="qr-button">Generar QR</button>
+        <div id="qr-container"></div>
+    </div>
+
+    <script src="qrcode.js"></script>
+    <script src="scripts.js"></script>
+
+    <div class="footer">
+        <p>Hackathon 2025</p>
+    </div>
+</body>
+</html>

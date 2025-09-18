@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar y Recibir</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <nav class="toolbar">
+            <button class="toolbar-button" onclick="location.href='inicio.html'">Inicio</button>
+            <button class="toolbar-button active">Enviar y Recibir</button>
+            <button class="toolbar-button" onclick="location.href='pagos_qr.html'">Pagos QR</button>
+            <button class="toolbar-button" onclick="location.href='historial.html'">Historial</button>
+        </nav>
+    </div>
+
+    <div class="welcome-section">
+        <div class="welcome-text">
+            <h1>Enviar y Recibir</h1>
+            <p>Gestiona tus transferencias de manera rápida y segura.</p>
+        </div>
+        <div class="welcome-image">
+            <img src="welcome-image.png" alt="Enviar y Recibir" class="image">
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="action-section">
+            <div class="action-card">
+                <h2>Enviar</h2>
+                <label for="destination-pointer">Payment Pointer de Destino</label>
+                <input type="text" id="destination-pointer" class="textfield" placeholder="Ejemplo: $wallet.example.com">
+                <label for="send-amount">Monto</label>
+                <input type="text" id="send-amount" class="textfield" placeholder="Ejemplo: 100">
+                <button class="action-button" onclick="sendPayment()">Realizar Pago</button>
+                <div id="send-message-area" class="message-area"></div>
+            </div>
+            <div class="action-card">
+                <h2>Recibir</h2>
+                <label for="payment-pointer">Payment Pointer</label>
+                <input type="text" id="payment-pointer" class="textfield" placeholder="Ejemplo: $wallet.example.com">
+                <label for="amount">Monto</label>
+                <input type="text" id="amount" class="textfield" placeholder="Ejemplo: 100">
+                <button class="action-button" onclick="generateReceiveQR()">Generar QR para recibir</button>
+                <div id="receive-qr-container" class="qr-container"></div>
+            </div>
+            <div class="action-card">
+                <h2>Consultar Pago</h2>
+                <label for="payment-id">ID del Pago</label>
+                <input type="text" id="payment-id" class="textfield" placeholder="Ejemplo: 12345">
+                <button class="action-button" onclick="consultPayment()">Consultar</button>
+                <div id="payment-details" class="message-area"></div>
+            </div>
+        </div>
+        <div class="message-area" id="message-area">
+            <!-- Message will appear here -->
+        </div>
+        <div class="info-section">
+            <h3>Información sobre Enviar y Recibir</h3>
+            <p>Con nuestra plataforma, puedes enviar y recibir dinero de manera rápida y segura. Explora las opciones y disfruta de una experiencia única.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Hackathon 2025</p>
+    </div>
+
+    <script>
+        function showMessage(action) {
+            const messageArea = document.getElementById('message-area');
+            messageArea.innerText = `Has ${action} con éxito!`;
+            setTimeout(() => {
+                messageArea.innerText = '';
+            }, 3000);
+        }
+
+        function generateReceiveQR() {
+            const paymentPointer = document.getElementById('payment-pointer').value;
+            const amount = document.getElementById('amount').value;
+            const qrContainer = document.getElementById('receive-qr-container');
+
+            // Aquí iría la lógica para generar el QR code
+            // Por ahora, solo mostramos un mensaje
+            qrContainer.innerHTML = `<p>QR Code generado para recibir ${amount} a ${paymentPointer}</p>`;
+        }
+
+        function sendPayment() {
+            const destinationPointer = document.getElementById('destination-pointer').value;
+            const sendAmount = document.getElementById('send-amount').value;
+            const sendMessageArea = document.getElementById('send-message-area');
+
+            // Aquí iría la lógica para realizar el pago
+            // Por ahora, solo mostramos un mensaje de éxito
+            sendMessageArea.innerText = `Pago de ${sendAmount} enviado a ${destinationPointer}`;
+            setTimeout(() => {
+                sendMessageArea.innerText = '';
+            }, 3000);
+        }
+
+        function consultPayment() {
+            const paymentId = document.getElementById('payment-id').value;
+            const paymentDetails = document.getElementById('payment-details');
+
+            // Aquí iría la lógica para consultar el pago
+            // Por ahora, solo mostramos un mensaje de ejemplo
+            paymentDetails.innerText = `Detalles del pago con ID ${paymentId}: Monto - 100, Estado - Completado`;
+            setTimeout(() => {
+                paymentDetails.innerText = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
